@@ -1,15 +1,8 @@
-# React / Redux - Authentication Login Google - Firebase - Local Storage - Others 
-(On process...)
+(Not finished yet)
+
+# React / Redux - Firebase Auth - LocalStorage
 
 <p>
   <img height="600" src="./src/home.png" />
-</p>
-
-<p>
-  <img height="600" src="./src/login.png" />
-</p>
-
-<p>
-  <img height="600" src="./src/shop.png" />
 </p>
 
