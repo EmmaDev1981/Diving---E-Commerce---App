@@ -1,1 +1,8 @@
-# React Redux - GraphQL - Authentication - User Register - Firebase (On process...)
+(Not finished yet)
+
+# React / Redux - Firebase Auth - LocalStorage
+
+<p>
+  <img height="600" src="./src/home.png" />
+</p>
+
