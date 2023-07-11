@@ -2,7 +2,8 @@ import React from "react";
 import './sign-in.styles.scss';
 import FormInput from "../form-input/form-input.component";
 import CustomButton from '../custom-button/custom-button.component'
-
+import { setCurrentUser } from "../../redux/user/user.actions";
+import { connect } from "react-redux";
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils'
 
 class SignIn extends React.Component {
@@ -36,6 +37,13 @@ class SignIn extends React.Component {
         this.setState({[name]: value})
     }
 
+    handleGoogleLogIn = async () => {
+      const userInfo = await signInWithGoogle()
+      if(userInfo){
+        this.props.setCurrentUser(userInfo)
+      }
+    }
+
     render() {
         return (
           <div className="sign-in">
@@ -59,7 +67,7 @@ class SignIn extends React.Component {
                 required
               />
               <CustomButton type="submit"> SIGN IN </CustomButton>
-              <CustomButton onClick={signInWithGoogle} isGoogleSignin> SIGN IN WITH GOOGLE </CustomButton>
+              <CustomButton onClick={this.handleGoogleLogIn} > SIGN IN WITH GOOGLE </CustomButton>
             </form>
           </div>
         );
@@ -67,4 +75,10 @@ class SignIn extends React.Component {
 
 };
 
-export default SignIn;
+function mapStateToProps(state) {
+  return {
+    user: state.user.currentUser
+  }
+}
+
+export default connect(mapStateToProps, {setCurrentUser})(SignIn);
