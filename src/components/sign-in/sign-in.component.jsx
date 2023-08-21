@@ -3,12 +3,14 @@ import FormInput from "../form-input/form-input.component";
 import CustomButton from '../custom-button/custom-button.component'
 import { setCurrentUser } from "../../redux/user/user.actions";
 import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom'
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils'
 import './sign-in.styles.scss';
 
 function SignIn() {
 
   const dispatch = useDispatch()
+  const history = useHistory()
   const [state, setState] = useState({
     email: '',
     password: ''
@@ -38,12 +40,13 @@ const handleGoogleLogIn = async () => {
   const userInfo = await signInWithGoogle()
   if(userInfo){
     dispatch(setCurrentUser(userInfo))
+    history.push('/shop')
   }
 }
 
 return (
   <div className="sign-in">
-    <h2>I already have a account</h2>
+    <h2>I already have an account</h2>
     <span>Sign in with your email and password</span>
 
     <form onSubmit={handleSubmit}>

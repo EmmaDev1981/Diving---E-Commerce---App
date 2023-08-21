@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-import './header.styles.scss'
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentUser } from "../../redux/user/user.actions";
 import {auth} from '../../firebase/firebase.utils'
+import './header.styles.scss'
 
 import { ReactComponent as Logo} from '../../assets/crown.svg'
 
 const Header = () => {
     const currentUser = useSelector((state) => state.user.currentUser)
+    console.log(currentUser)
     const dispatch = useDispatch()
 
     const handleSignOut = async () => {
@@ -22,6 +23,9 @@ const Header = () => {
             <Link className="logo-container" to="/">
                 <Logo className="logo"/>
             </Link>
+            {
+                currentUser ? (<h4>Welcome, {currentUser?.user?.displayName}</h4>) : (null)
+            }
             <div className="options">
                 <Link className="option" to='/shop'>
                     SHOP
